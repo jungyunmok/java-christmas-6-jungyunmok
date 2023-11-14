@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.DateCalculator;
 import christmas.domain.Event;
 import christmas.domain.Order;
 
@@ -14,13 +15,14 @@ public class OutputView {
     private int date;
 
     public OutputView(Order order) {
+        event = new Event();
         this.order = order;
         this.orderedItems = order.getOrderedItems();
         this.amount = order.getAmount();
     }
 
     public void printMenu(int date) {
-        event = new Event();
+
         this.date = date;
         System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         details();
@@ -60,6 +62,7 @@ public class OutputView {
         System.out.println();
         System.out.println("<혜택 내역>");
         totalDiscount += repeatSaleList(event.xmasSale(date), "크리스마스 디데이 할인: -");
+        totalDiscount += repeatSaleList(event.weekdaySale(date, orderedItems), "평일 할인: -");
         if (totalDiscount == 0) System.out.println("없음");
         return totalDiscount;
     }
