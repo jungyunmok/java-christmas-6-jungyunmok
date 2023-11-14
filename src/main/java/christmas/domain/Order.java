@@ -11,6 +11,7 @@ public class Order {
     private int totalCount = 0;
     private int beverageCount = 0;
     private int amount = 0;
+
     private Map<String, Integer> orderedItems;
 
     public Order(Map<String, Integer> items) {
@@ -20,6 +21,10 @@ public class Order {
 
     public Map<String, Integer> getOrderedItems() {
         return orderedItems;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     private void validate(Map<String, Integer> items) {
@@ -50,21 +55,5 @@ public class Order {
             orderedItems.put(key, value);
             amount += menu.getPrice() * value;
         }
-    }
-
-    public void details() {
-        System.out.println("<주문 메뉴>");
-        for (Map.Entry<String, Integer> item : orderedItems.entrySet()) {
-            System.out.println(item.getKey() + " " + item.getValue() + "개");
-        }
-        System.out.println();
-    }
-
-    public int amount() {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        System.out.println("<할인 전 총주문 금액>");
-        System.out.println(decimalFormat.format(amount) + "원");
-        System.out.println();
-        return amount;
     }
 }
