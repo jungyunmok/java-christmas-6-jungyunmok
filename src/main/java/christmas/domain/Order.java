@@ -28,11 +28,12 @@ public class Order {
                 existsMenu(item.getKey(), item.getValue(), menu);
             }
         }
-        if (orderedItems.size() == beverageCount) {
-            throwException("[ERROR] 음료만 주문 시 주문할 수 없습니다.");
+        if (beverageCount > 0 && orderedItems.size() == beverageCount) {
+            System.out.println("[ERROR] 음료만 주문 시 주문할 수 없습니다.");
+            throw new IllegalArgumentException();
         }
         if (orderedItems.size() != items.size()) {
-            throwException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -40,7 +41,8 @@ public class Order {
         if (menu.getName().equals(key)) {
             totalCount += value;
             if (totalCount > MAXCOUNT) {
-                throwException("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
+                System.out.println("[ERROR] 메뉴는 한 번에 최대 20개까지 주문할 수 있습니다.");
+                throw new IllegalArgumentException();
             }
             if (menu.getType().equals("음료")) {
                 beverageCount++;
@@ -49,8 +51,15 @@ public class Order {
         }
     }
 
-    private void throwException(String message) {
-        System.out.println(message);
-        throw new IllegalArgumentException();
+    public void details() {
+        System.out.println("<주문 메뉴>");
+        for (Map.Entry<String, Integer> item : orderedItems.entrySet()) {
+            System.out.println(item.getKey() + " " + item.getValue() + "개");
+        }
+    }
+
+    public String amount() {
+        System.out.println("<할인 전 총주문 금액>");
+        return "";
     }
 }

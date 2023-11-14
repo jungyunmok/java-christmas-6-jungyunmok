@@ -10,6 +10,10 @@ public class Exception {
         int number;
         try {
             number = Integer.parseInt(input);
+            if (range == Order.MAXCOUNT && number > range) {
+                System.out.println("[ERROR] 메뉴는 한 번에 최대 20개까지 주문할 수 있습니다.");
+                throw new IllegalArgumentException();
+            }
             if (number < 1 || number > range) {
                 throw new IllegalArgumentException();
             }
@@ -19,18 +23,18 @@ public class Exception {
         return number;
     }
 
-    public boolean checkOrder(String input) {
+    public Order checkOrder(String input) {
         items = new HashMap<>();
         try {
             String[] items = input.split(",");
             for (String item : items) {
                 checkMenu(item);
             }
-        } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException(e);
         }
-        return true;
+        order = new Order(items);
+        return order;
     }
 
     public void checkMenu(String item) {
@@ -43,6 +47,5 @@ public class Exception {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException(e);
         }
-        order = new Order(items);
     }
 }
