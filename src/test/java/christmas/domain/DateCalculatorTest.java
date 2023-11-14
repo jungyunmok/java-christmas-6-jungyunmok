@@ -24,7 +24,7 @@ class DateCalculatorTest {
         assertThat(dateCalculator.findDay(input)).isEqualTo("금");
     }
 
-    @DisplayName("일자 입력시 해당하는 날짜 반환- 월요일")
+    @DisplayName("일자 입력시 해당하는 날짜 반환 - 월요일")
     @ValueSource(ints = {4, 11, 18, 25})
     @ParameterizedTest
     void 월요일_반환(int input) {
