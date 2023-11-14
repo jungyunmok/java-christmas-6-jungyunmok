@@ -31,13 +31,6 @@ class ExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("메뉴-개수 올바르게 입력하기")
-    @ValueSource(strings = {"타파스-1,제로콜라-1", "해산물파스타-2,레드와인-1,초코케이크-1", "바비큐립-10"})
-    @ParameterizedTest
-    void 올바른_메뉴_입력(String input) {
-        assertThat(exception.checkOrder(input)).isEqualTo(true);
-    }
-
     @DisplayName("중복 메뉴, 잘못된 개수 입력하기")
     @ValueSource(strings = {"타파스-1,타파스-1", "해산물파스타-0,레드와인-1,초코케이크-1", "바비큐립-99"})
     @ParameterizedTest

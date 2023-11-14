@@ -92,7 +92,7 @@ public class OutputView {
 
     public void totalDiscount() {
         System.out.println();
-        System.out.println("총혜택 금액");
+        System.out.println("<총혜택 금액>");
         if (totalDiscount == 0) {
             System.out.println("0원");
             return;
