@@ -10,8 +10,8 @@ public class OutputView {
     Order order;
     Event event;
     private Map<String, Integer> orderedItems;
-    int amount;
-    int date;
+    private int amount;
+    private int date;
 
     public OutputView(Order order) {
         this.order = order;
@@ -57,12 +57,16 @@ public class OutputView {
 
     public int saleList() {
         int totalDiscount = 0;
-        int discount = event.xmasSale(date);
-        if (discount > totalDiscount) {
-            System.out.println("크리스마스 디데이 할인: -" + discount);
-            totalDiscount += discount;
-        }
-        System.out.println("없음");
+        System.out.println();
+        System.out.println("<혜택 내역>");
+        totalDiscount += repeatSaleList(event.xmasSale(date), "크리스마스 디데이 할인: -");
+        if (totalDiscount == 0) System.out.println("없음");
         return totalDiscount;
+    }
+
+    public int repeatSaleList(int discount, String message) {
+        if (discount > 0)
+            System.out.println(message + discount);
+        return discount;
     }
 }
