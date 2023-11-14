@@ -13,6 +13,7 @@ public class OutputView {
     DateCalculator dateCalculator;
     private Map<String, Integer> orderedItems;
     private int amount;
+    private int totalDiscount;
     private int date;
 
     public OutputView(Order order) {
@@ -28,8 +29,8 @@ public class OutputView {
         this.date = date;
         System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         details();
-        int offPrice = gift(amount());
-        offPrice += saleList();
+        totalDiscount = gift(amount());
+        totalDiscount = saleList();
     }
 
     public void details() {
@@ -67,13 +68,15 @@ public class OutputView {
         String weekSaleMessage = "휴일 할인: -";
         if (!day.equals("금") && !day.equals("토")) weekSaleMessage = "평일 할인: -";
         discount += repeatSaleList(event.whichDay(weekSaleMessage, orderedItems), weekSaleMessage);
+        discount += repeatSaleList(event.specialSale(date), "특별 할인: -");
+        discount += repeatSaleList(totalDiscount, "증정 이벤트: -");
         if (discount == 0) System.out.println("없음");
         return discount;
     }
 
     public int repeatSaleList(int discount, String message) {
         if (discount > 0)
-            System.out.println(message + discount);
+            System.out.println(message + discount + "원");
         return discount;
     }
 }

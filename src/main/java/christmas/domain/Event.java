@@ -53,6 +53,5 @@ public class Event {
             discount = 1000;
         }
         return discount;
-
     }
 }
