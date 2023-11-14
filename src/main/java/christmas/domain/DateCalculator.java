@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DateCalculator {
+    public static final int MAXDATE = 31;
     private final ArrayList<String> WEEK = new ArrayList<>(List.of("금", "토", "일", "월", "화", "수", "목"));
 
     public String findDay(int date) {
