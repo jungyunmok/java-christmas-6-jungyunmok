@@ -28,6 +28,4 @@ class ExceptionTest {
          assertThatThrownBy(() -> exception.checkInt("test"))
             .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }
