@@ -31,6 +31,7 @@ public class OutputView {
         totalDiscount = gift(amount());
         totalDiscount = saleList();
         totalDiscount();
+        afterDiscount();
     }
 
     public void details() {
@@ -84,5 +85,11 @@ public class OutputView {
         System.out.println();
         System.out.println("총혜택 금액");
         System.out.println("-" + totalDiscount + "원");
+    }
+
+    public void afterDiscount() {
+        System.out.println();
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(amount - totalDiscount);
     }
 }

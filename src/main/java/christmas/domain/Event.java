@@ -8,6 +8,9 @@ public class Event {
     public static final int GIFTPRICE = 120000;
     public static final int WEEKSALE = 2023;
     public static final int SPECIALSALE = 1000;
+    public static final int STAR = 5000;
+    public static final int TREE = 10000;
+    public static final int SANTA = 20000;
 
     public int xmasSale(int date) {
         int discount = 0;
@@ -50,8 +53,21 @@ public class Event {
     public int specialSale(int date) {
         int discount = 0;
         if (date % 7 == 3 || date == 25) {
-            discount = 1000;
+            discount = SPECIALSALE;
         }
         return discount;
+    }
+
+    public String badge(int totalDiscount) {
+        if(totalDiscount >= SANTA) {
+            return "산타";
+        }
+        if(totalDiscount >= TREE) {
+            return "트리";
+        }
+        if(totalDiscount >= STAR) {
+            return "별";
+        }
+        return "없음";
     }
 }
