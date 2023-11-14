@@ -25,12 +25,12 @@ public class OutputView {
     }
 
     public void printMenu(int date) {
-
         this.date = date;
         System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         details();
         totalDiscount = gift(amount());
         totalDiscount = saleList();
+        totalDiscount();
     }
 
     public void details() {
@@ -78,5 +78,11 @@ public class OutputView {
         if (discount > 0)
             System.out.println(message + discount + "원");
         return discount;
+    }
+
+    public void totalDiscount() {
+        System.out.println();
+        System.out.println("총혜택 금액");
+        System.out.println("-" + totalDiscount + "원");
     }
 }
