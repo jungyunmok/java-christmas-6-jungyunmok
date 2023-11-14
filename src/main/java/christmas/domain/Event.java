@@ -7,4 +7,6 @@ public class Event {
             discount = 1000 + ((date-1)*100);
         return discount;
     }
+
+
 }
