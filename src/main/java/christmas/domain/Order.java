@@ -2,13 +2,15 @@ package christmas.domain;
 
 import christmas.menu.MenuList;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
     public static final int MAXCOUNT = 20;
-    private int totalCount;
-    private int beverageCount;
+    private int totalCount = 0;
+    private int beverageCount = 0;
+    private int amount = 0;
     private Map<String, Integer> orderedItems;
 
     public Order(Map<String, Integer> items) {
@@ -21,8 +23,6 @@ public class Order {
     }
 
     private void validate(Map<String, Integer> items) {
-        totalCount = 0;
-        beverageCount = 0;
         for (MenuList menu : MenuList.values()) {
             for (Map.Entry<String, Integer> item : items.entrySet()) {
                 existsMenu(item.getKey(), item.getValue(), menu);
@@ -48,6 +48,7 @@ public class Order {
                 beverageCount++;
             }
             orderedItems.put(key, value);
+            amount += menu.getPrice() * value;
         }
     }
 
@@ -56,10 +57,14 @@ public class Order {
         for (Map.Entry<String, Integer> item : orderedItems.entrySet()) {
             System.out.println(item.getKey() + " " + item.getValue() + "개");
         }
+        System.out.println();
     }
 
-    public String amount() {
+    public int amount() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
         System.out.println("<할인 전 총주문 금액>");
-        return "";
+        System.out.println(decimalFormat.format(amount) + "원");
+        System.out.println();
+        return amount;
     }
 }
