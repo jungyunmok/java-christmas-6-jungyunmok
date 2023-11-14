@@ -5,6 +5,7 @@ import christmas.menu.MenuList;
 import java.util.Map;
 
 public class Event {
+    public static final int MINAMOUNT = 10000;
     public static final int GIFTPRICE = 120000;
     public static final int WEEKSALE = 2023;
     public static final int SPECIALSALE = 1000;
