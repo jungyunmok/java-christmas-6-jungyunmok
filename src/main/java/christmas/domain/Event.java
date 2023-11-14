@@ -46,4 +46,13 @@ public class Event {
         }
         return WEEKSALE * count;
     }
+
+    public int specialSale(int date) {
+        int discount = 0;
+        if (date % 7 == 3 || date == 25) {
+            discount = 1000;
+        }
+        return discount;
+
+    }
 }
