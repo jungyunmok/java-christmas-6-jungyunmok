@@ -11,6 +11,7 @@ public class OutputView {
     Event event;
     private Map<String, Integer> orderedItems;
     int amount;
+    int date;
 
     public OutputView(Order order) {
         this.order = order;
@@ -20,34 +21,48 @@ public class OutputView {
 
     public void printMenu(int date) {
         event = new Event();
+        this.date = date;
         System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
-        System.out.println();
         details();
         int offPrice = gift(amount());
+        offPrice += saleList();
     }
 
     public void details() {
+        System.out.println();
         System.out.println("<주문 메뉴>");
         for (Map.Entry<String, Integer> item : orderedItems.entrySet()) {
             System.out.println(item.getKey() + " " + item.getValue() + "개");
         }
-        System.out.println();
     }
 
     public int amount() {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.println();
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(decimalFormat.format(amount) + "원");
-        System.out.println();
         return amount;
     }
 
     public int gift(int amount) {
+        System.out.println();
+        System.out.println("<증정 메뉴>");
         if (amount >= Event.GIFTPRICE) {
             System.out.println("샴페인 1개");
             return Event.GIFTPRICE;
         }
         System.out.println("없음");
         return 0;
+    }
+
+    public int saleList() {
+        int totalDiscount = 0;
+        int discount = event.xmasSale(date);
+        if (discount > totalDiscount) {
+            System.out.println("크리스마스 디데이 할인: -" + discount);
+            totalDiscount += discount;
+        }
+        System.out.println("없음");
+        return totalDiscount;
     }
 }
