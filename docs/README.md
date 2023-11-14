@@ -38,11 +38,11 @@
         - [ ] 1 이상의 숫자가 아닐 경우 에러메시지("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.")
         - [ ] 20개 초과할 경우 에러메시지
 
-### exception
-- [ ] String to int 변환 체크 - checkInt()
-- [ ] 유효 숫자 범위 체크 - checkRange()
-- [ ] 유효 주문 형식 체크 - checkOrder()
-- [ ] 유효 메뉴 체크 - checkMenu()
+- [ ] 변환 및 유효성 체크 - Exception
+  - [x] String to int 변환 체크 - checkInt()
+  - [ ] 유효 숫자 범위 체크 - checkRange()
+  - [ ] 유효 주문 형식 체크 - checkOrder()
+  - [ ] 유효 메뉴 체크 - checkMenu()
 
 ### view
 
@@ -52,7 +52,7 @@
     - [ ] 메뉴는 최대 20개까지 주문 가능
 
 - [ ] 방문 날짜 받기 - InputView
-    - [ ] 1~31 숫자 입력
+    - [ ] 1~31 숫자 입력 - readDate()
         - [ ] 유효한 숫자가 아닐 경우 에러메시지("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")
     - [ ] 주문 메뉴, 개수 입력(e.g. 해산물파스타-2,레드와인-1,초코케이크-1) - OrderDetail
 
