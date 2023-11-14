@@ -10,12 +10,14 @@ import java.util.Map;
 public class OutputView {
     Order order;
     Event event;
+    DateCalculator dateCalculator;
     private Map<String, Integer> orderedItems;
     private int amount;
     private int date;
 
     public OutputView(Order order) {
         event = new Event();
+        dateCalculator = new DateCalculator();
         this.order = order;
         this.orderedItems = order.getOrderedItems();
         this.amount = order.getAmount();
@@ -58,13 +60,15 @@ public class OutputView {
     }
 
     public int saleList() {
-        int totalDiscount = 0;
         System.out.println();
         System.out.println("<혜택 내역>");
-        totalDiscount += repeatSaleList(event.xmasSale(date), "크리스마스 디데이 할인: -");
-        totalDiscount += repeatSaleList(event.weekdaySale(date, orderedItems), "평일 할인: -");
-        if (totalDiscount == 0) System.out.println("없음");
-        return totalDiscount;
+        int discount = repeatSaleList(event.xmasSale(date), "크리스마스 디데이 할인: -");
+        String day = dateCalculator.findDay(date);
+        String weekSaleMessage = "휴일 할인: -";
+        if (!day.equals("금") && !day.equals("토")) weekSaleMessage = "평일 할인: -";
+        discount += repeatSaleList(event.whichDay(weekSaleMessage, orderedItems), weekSaleMessage);
+        if (discount == 0) System.out.println("없음");
+        return discount;
     }
 
     public int repeatSaleList(int discount, String message) {

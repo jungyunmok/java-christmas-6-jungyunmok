@@ -5,7 +5,6 @@ import christmas.menu.MenuList;
 import java.util.Map;
 
 public class Event {
-    DateCalculator dateCalculator;
     public static final int GIFTPRICE = 120000;
     public static final int WEEKSALE = 2023;
     public static final int SPECIALSALE = 1000;
@@ -18,11 +17,9 @@ public class Event {
         return discount;
     }
 
-    public int whichDay(int date, Map<String, Integer> order) {
-        dateCalculator = new DateCalculator();
+    public int whichDay(String weekSaleMessage, Map<String, Integer> order) {
         int discount = 0;
-        String day = dateCalculator.findDay(date);
-        if (!day.equals("금") && !day.equals("토")) {
+        if (weekSaleMessage.contains("평일")) {
             discount = weekdaySale(order);
             return discount;
         }
@@ -31,13 +28,22 @@ public class Event {
     }
 
     public int weekdaySale(Map<String, Integer> order) {
-        int discount = 0;
         int count = 0;
         for (MenuList menu : MenuList.values()) {
             if (menu.getType().equals("디저트") && order.containsKey(menu.getName())) {
                 count += order.get(menu.getName());
             }
         }
-        return discount;
+        return WEEKSALE * count;
+    }
+
+    public int weekendSale(Map<String, Integer> order) {
+        int count = 0;
+        for (MenuList menu : MenuList.values()) {
+            if (menu.getType().equals("메인") && order.containsKey(menu.getName())) {
+                count += order.get(menu.getName());
+            }
+        }
+        return WEEKSALE * count;
     }
 }
