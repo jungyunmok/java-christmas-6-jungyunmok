@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,10 +23,11 @@ class ExceptionTest {
         assertThat(exception.checkInt("1", 31)).isEqualTo(1);
     }
 
-    @DisplayName("숫자가 아닌 문자열 입력시 IllegalArgumentException 발생.")
-    @Test
-    void 인트_변환_문자_입력() {
-        assertThatThrownBy(() -> exception.checkInt("test", 31))
+    @DisplayName("문자열, 범위 초과, 0, 음수 입력시 IllegalArgumentException 발생.")
+    @ValueSource(strings = {"test", "99", "0", "-50"})
+    @ParameterizedTest
+    void 인트_변환_잘못된_입력(String input) {
+        assertThatThrownBy(() -> exception.checkInt(input, 31))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

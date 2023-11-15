@@ -30,6 +30,12 @@ public class Exception {
         return number;
     }
 
+    /**
+     * 전체 주문 ","로 끊어서 담기
+     *
+     * @param input 총 주문내역(메뉴1-개수,메뉴2-개수)
+     * @return order
+     */
     public Order checkOrder(String input) {
         items = new HashMap<>();
         try {
@@ -44,6 +50,11 @@ public class Exception {
         return order;
     }
 
+    /**
+     * 주문 "-"로 끊어서 메뉴, 개수 담기
+     *
+     * @param item 주문내역(메뉴1-개수)
+     */
     public void checkMenu(String item) {
         try {
             String[] tempItem = item.split("-");
