@@ -31,7 +31,7 @@ public class Event {
      * 평일, 휴일 판단 후 메서드 선택
      *
      * @param weekSaleMessage 평일 할인 or 휴일 할인
-     * @param order 주문 내역
+     * @param order           주문 내역
      * @return discount 할인 금액
      */
     public int whichDay(String weekSaleMessage, Map<String, Integer> order) {

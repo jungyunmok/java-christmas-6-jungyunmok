@@ -19,6 +19,7 @@ public class OutputView {
     private int giftDiscount;
     private int date;
 
+
     public OutputView(Order order) {
         event = new Event();
         dateCalculator = new DateCalculator();
@@ -111,7 +112,7 @@ public class OutputView {
      * 이벤트 이름, 할인 금액 출력
      *
      * @param discount 할인 금액
-     * @param message 혜택 내역 메시지
+     * @param message  혜택 내역 메시지
      * @return discount 할인 금액
      */
     public int repeatSaleList(int discount, String message) {

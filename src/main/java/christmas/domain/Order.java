@@ -48,9 +48,9 @@ public class Order {
     /**
      * 메뉴가 존재하는지, 총 몇 개 주문하는지 확인
      *
-     * @param key HashMap 키값
+     * @param key   HashMap 키값
      * @param value HashMap 밸류값
-     * @param menu 존재하는 메뉴
+     * @param menu  존재하는 메뉴
      */
     private void existsMenu(String key, int value, MenuList menu) {
         if (menu.getName().equals(key)) {
