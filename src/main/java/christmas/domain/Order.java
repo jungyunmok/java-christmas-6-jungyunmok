@@ -2,7 +2,6 @@ package christmas.domain;
 
 import christmas.menu.MenuList;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +10,6 @@ public class Order {
     private int totalCount = 0;
     private int beverageCount = 0;
     private int amount = 0;
-
     private Map<String, Integer> orderedItems;
 
     public Order(Map<String, Integer> items) {
@@ -27,6 +25,11 @@ public class Order {
         return amount;
     }
 
+    /**
+     * 넘겨받은 메뉴 확인 후 음료만 주문하거나 메뉴가 존재하지 않으면 exception 발생
+     *
+     * @param items 주문 내역
+     */
     private void validate(Map<String, Integer> items) {
         for (MenuList menu : MenuList.values()) {
             for (Map.Entry<String, Integer> item : items.entrySet()) {
@@ -42,6 +45,13 @@ public class Order {
         }
     }
 
+    /**
+     * 메뉴가 존재하는지, 총 몇 개 주문하는지 확인
+     *
+     * @param key HashMap 키값
+     * @param value HashMap 밸류값
+     * @param menu 존재하는 메뉴
+     */
     private void existsMenu(String key, int value, MenuList menu) {
         if (menu.getName().equals(key)) {
             totalCount += value;

@@ -28,6 +28,11 @@ public class OutputView {
         this.amount = order.getAmount();
     }
 
+    /**
+     * 이벤트 플래너 결과 총 출력
+     *
+     * @param date
+     */
     public void printMenu(int date) {
         this.date = date;
         System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
@@ -40,6 +45,9 @@ public class OutputView {
         printBadge();
     }
 
+    /**
+     * 주문 메뉴 출력
+     */
     public void details() {
         System.out.println();
         System.out.println("<주문 메뉴>");
@@ -48,14 +56,24 @@ public class OutputView {
         }
     }
 
+    /**
+     * 할인 전 총 주문 금액 출력
+     *
+     * @return amount 총 주문 금액
+     */
     public int amount() {
-
         System.out.println();
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(decimalFormat.format(amount) + "원");
         return amount;
     }
 
+    /**
+     * 증정 메뉴 출력
+     *
+     * @param amount
+     * @return 샴페인가격(25000) 혹은 0
+     */
     public int gift(int amount) {
         System.out.println();
         System.out.println("<증정 메뉴>");
@@ -67,6 +85,11 @@ public class OutputView {
         return 0;
     }
 
+    /**
+     * 혜택 내역 출력
+     *
+     * @return discount 할인 받은 금액
+     */
     public int saleList() {
         System.out.println();
         System.out.println("<혜택 내역>");
@@ -84,12 +107,22 @@ public class OutputView {
         return discount;
     }
 
+    /**
+     * 이벤트 이름, 할인 금액 출력
+     *
+     * @param discount 할인 금액
+     * @param message 혜택 내역 메시지
+     * @return discount 할인 금액
+     */
     public int repeatSaleList(int discount, String message) {
         if (discount > 0)
             System.out.println(message + decimalFormat.format(discount) + "원");
         return discount;
     }
 
+    /**
+     * 총 혜택 금액 출력
+     */
     public void totalDiscount() {
         System.out.println();
         System.out.println("<총혜택 금액>");
@@ -100,12 +133,18 @@ public class OutputView {
         System.out.println("-" + decimalFormat.format(totalDiscount + giftDiscount) + "원");
     }
 
+    /**
+     * 할인 후 예상 결제 금액 출력
+     */
     public void afterDiscount() {
         System.out.println();
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(decimalFormat.format(amount - totalDiscount) + "원");
     }
 
+    /**
+     * 이벤트 배지 출력
+     */
     public void printBadge() {
         System.out.println();
         System.out.println("<12월 이벤트 배지>");

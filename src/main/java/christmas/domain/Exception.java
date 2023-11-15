@@ -31,7 +31,7 @@ public class Exception {
     }
 
     /**
-     * 전체 주문 ","로 끊어서 담기
+     * 전체 주문 ","로 끊어서 HashMap에 담은 후 order에 넘기기
      *
      * @param input 총 주문내역(메뉴1-개수,메뉴2-개수)
      * @return order
@@ -51,7 +51,7 @@ public class Exception {
     }
 
     /**
-     * 주문 "-"로 끊어서 메뉴, 개수 담기
+     * 주문 "-"로 끊어서 메뉴, 개수 HashMap에 담기
      *
      * @param item 주문내역(메뉴1-개수)
      */
