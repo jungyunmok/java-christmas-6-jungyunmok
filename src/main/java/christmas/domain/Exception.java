@@ -6,6 +6,13 @@ public class Exception {
     Order order = null;
     Map<String, Integer> items;
 
+    /**
+     * String to int 변환
+     *
+     * @param input int로 바꾸려는 문자열
+     * @param range 해당 int의 허용가능한 최대 값
+     * @return int로 변환된 값
+     */
     public int checkInt(String input, int range) {
         int number;
         try {
